@@ -1,14 +1,23 @@
 import { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, Phone, MapPin, ChevronDown, ExternalLink, Download } from 'lucide-react';
+import { Github, Linkedin, Mail, MapPin, ChevronDown, ExternalLink, Download } from 'lucide-react';
+
+interface VisibleSections {
+  about?: boolean;
+  projects?: boolean;
+  experience?: boolean;
+  stack?: boolean;
+  skills?: boolean;
+  contact?: boolean;
+}
 
 export default function Portfolio() {
   const [scrollY, setScrollY] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [visibleSections, setVisibleSections] = useState({});
+  const [visibleSections, setVisibleSections] = useState<VisibleSections>({});
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
-    const handleMouse = (e) => setMousePos({ x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight });
+    const handleMouse = (e: MouseEvent) => setMousePos({ x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight });
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('mousemove', handleMouse);
     return () => { window.removeEventListener('scroll', handleScroll); window.removeEventListener('mousemove', handleMouse); };
@@ -22,7 +31,7 @@ export default function Portfolio() {
     return () => observer.disconnect();
   }, []);
 
-  const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
   const projects = [
     { title: "Bank Customer Churn Prediction", desc: "Built an intelligent churn prediction system analyzing 10,000+ customer records with 14 behavioral features. Developed a custom ANN achieving 86.2% accuracy and compared it with H2O AutoML's Stacked Ensemble. Engineered key features like BalanceSalaryRatio and TenureByAge, enabling real-time probability scoring for targeted retention campaigns.", tags: ["Python", "H2O AutoML", "Keras", "TensorFlow", "Pandas"], github: "https://github.com/vaishnavi1064/Bank-Customer-Churn-Prediction-using-H2O-Auto-ML", featured: true },
