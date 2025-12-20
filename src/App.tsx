@@ -234,27 +234,6 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* TECHNICAL STACK Section */}
-      <section id="stack" className={`relative py-24 px-6 transition-all duration-1000 ${visibleSections.stack ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-extralight mb-12">
-            <span className="text-cyan-400">Technical Stack</span>
-          </h2>
-          <div className="space-y-8">
-            {Object.entries(stack).map(([category, skills]) => (
-              <div key={category}>
-                <h3 className="text-sm uppercase tracking-wider text-slate-500 mb-4 font-medium">{category}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {skills.map((tech) => (
-                    <span key={tech} className="px-4 py-2 rounded-full text-sm bg-slate-900/30 text-slate-300 border border-slate-800/50 hover:border-teal-500/50 hover:text-teal-400 transition-all cursor-default">{tech}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* SKILLS Section */}
       <section id="skills" className={`relative py-24 px-6 transition-all duration-1000 ${visibleSections.skills ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="max-w-5xl mx-auto">
