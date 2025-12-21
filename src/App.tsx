@@ -102,7 +102,7 @@ export default function Portfolio() {
           </button>
           <div className="flex items-center gap-6">
             <nav className="hidden md:flex gap-8 text-sm">
-              {['projects', 'experience', 'skills', 'publications', 'contact'].map(item => (
+              {['projects', 'experience', 'skills', 'publications', 'certifications', 'contact'].map(item => (
                 <button key={item} onClick={() => scrollTo(item)} className="text-white font-semibold hover:text-teal-400 transition-colors capitalize drop-shadow-lg">{item}</button>
               ))}
             </nav>
