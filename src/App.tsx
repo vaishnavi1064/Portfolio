@@ -5,9 +5,7 @@ interface VisibleSections {
   about?: boolean;
   projects?: boolean;
   experience?: boolean;
-  stack?: boolean;
   skills?: boolean;
-  achievements?: boolean;
   publications?: boolean;
   certifications?: boolean;
   contact?: boolean;
@@ -36,6 +34,8 @@ export default function Portfolio() {
 
   const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
+  const resumeLink = "https://drive.google.com/file/d/1a7aQT78qppYixMCpUgHnoBrx9_J2wYba/view?usp=sharing";
+
   const projects = [
     { title: "Bank Customer Churn Prediction", desc: "Built an intelligent churn prediction system analyzing 10,000+ customer records with 14 behavioral features. Developed a custom ANN achieving 86.2% accuracy and compared it with H2O AutoML's Stacked Ensemble. Engineered key features like BalanceSalaryRatio and TenureByAge, enabling real-time probability scoring for targeted retention campaigns.", tags: ["Python", "H2O AutoML", "Keras", "TensorFlow", "Pandas"], github: "https://github.com/vaishnavi1064/Bank-Customer-Churn-Prediction-using-H2O-Auto-ML", featured: true },
     { title: "Parkinson's Disease Prediction", desc: "Developed an accessible voice-based diagnostic tool analyzing 22 acoustic biomarkers from 195 voice recordings. Achieved 89.7% accuracy using Random Forest with zero false negatives — critical for clinical safety. Compared 5 ML algorithms systematically to ensure optimal model selection for healthcare deployment.", tags: ["Python", "Scikit-learn", "Random Forest", "SVM", "Seaborn"], github: "https://github.com/vaishnavi1064/Parkinson-s-Disease-Prediction", featured: true },
@@ -46,48 +46,41 @@ export default function Portfolio() {
   ];
 
   const stack = {
-    "Languages": ["Python", "R", "SQL", "Java", "JavaScript", "HTML"],
-    "Data Engineering & Big Data": ["AWS (EC2, S3, DynamoDB)", "Spark", "Hive", "Kafka", "Docker", "Kubernetes", "Splunk", "Microsoft Azure"],
-    "Machine Learning & Data Science": ["TensorFlow", "Keras", "PyTorch", "Scikit-learn", "H2O AutoML", "Pandas", "NumPy", "OpenAI", "RAG", "NLP", "Neural Networks", "SVM", "Random Forest", "Diffusion Models", "Fine-tuning"],
-    "Visualization & Analytics": ["Power BI", "Tableau", "Plotly", "Seaborn", "Matplotlib", "A/B Testing", "Statistical Analysis", "Time Series"],
-    "Developer Tools": ["Git", "GitHub Copilot", "Linux (CLI)", "IBM Cloud", "Agile", "DSA", "OOP"],
-    "Currently Exploring": ["LLMs & LangChain", "Generative AI", "MLflow & MLOps", "Vertex AI"]
+    "Languages": ["Python", "R", "SQL", "Java", "JavaScript", "C++", "Scala"],
+    "Machine Learning & Data Science": ["TensorFlow", "Keras", "PyTorch", "Scikit-learn", "H2O AutoML", "XGBoost", "Pandas", "NumPy", "NLP", "Neural Networks", "SVM", "Random Forest"],
+    "Big Data & Cloud": ["AWS (EC2, S3, Lambda, Redshift)", "Spark", "Hadoop", "Hive", "Kafka", "Docker", "Kubernetes", "ETL Pipelines"],
+    "Visualization & Analytics": ["Power BI", "Tableau", "Plotly", "D3.js", "Seaborn", "Matplotlib", "A/B Testing", "Statistical Analysis"],
+    "Databases & Tools": ["PostgreSQL", "MongoDB", "Elasticsearch", "Git", "Linux/Unix", "Agile", "CI/CD", "MLOps"],
+    "Currently Exploring": ["LLMs & LangChain", "Generative AI", "RAG", "MLflow", "Vertex AI"]
   };
 
   const publications = [
     {
       title: "SaaS Multi-Model Integration: A Comprehensive Student Companion",
-      venue: "International Journal of Signal Processing Systems (IJSPS)",
+      venue: "International Journal of Signal Processing Systems",
       year: "2024",
-      desc: "Co-authored research paper proposing unified SaaS platform integrating multiple AI/LLM models; conducted user research with 1,000+ students and introduced DocuTutor feature for academic document analysis using NLP",
-      tags: ["AI/LLM", "NLP", "SaaS", "User Research"]
+      desc: "Co-authored a research paper proposing a unified SaaS platform integrating multiple AI/LLM models under a single subscription. Conducted user research through surveys and feedback collection from 1,000+ student users to validate platform design and identify pain points. Introduced the DocuTutor feature for personalized academic document analysis using NLP techniques.",
+      tags: ["AI/LLM", "NLP", "SaaS", "User Research", "DocuTutor"]
     },
     {
-      title: "Unified AI Chatbot Platform: Multi-LLM Integration",
-      venue: "Intellectual Property Office, Govt. of India (Reg. No. L-162771/2025)",
+      title: "Unified AI Chatbot Platform: A Multi-LLM Integration with Single-Account Access and Enhanced PDF Integration",
+      venue: "Intellectual Property Office, Government of India (Reg. No. L-162771/2025)",
       year: "2025",
-      desc: "Co-authored copyrighted literary work outlining unified AI chatbot platform with multi-LLM integration and enhanced PDF integration",
-      tags: ["Copyright", "AI Chatbot", "LLM Integration"]
+      desc: "Co-authored a copyrighted literary work outlining a unified AI chatbot platform with multi-LLM integration. Registered with the Intellectual Property Office, Government of India.",
+      tags: ["Copyright", "AI Chatbot", "Multi-LLM", "PDF Integration"]
     }
   ];
 
-  const achievements = [
-    { title: "Google Developer Groups Cloud Lead", desc: "Delivered 8 technical workshops to 500+ developers", icon: "☁️" },
-    { title: "GameCube Club Program Manager", desc: "Leading 15-member team organizing 10+ events at Northeastern", icon: "🎮" },
-    { title: "Google DSC Event Co-Lead", desc: "Managed 200-member club; increased attendance by 40%", icon: "🎯" },
-    { title: "86.2% Model Accuracy", desc: "Bank Customer Churn Prediction using H2O AutoML", icon: "📊" },
-    { title: "89.7% Accuracy - Zero False Negatives", desc: "Parkinson's Disease Prediction for clinical safety", icon: "🏥" },
-    { title: "$15K/month Cost Savings", desc: "Identified API cost inefficiency in SaaS Analytics Platform", icon: "💰" }
-  ];
-
   const certifications = [
-    { name: "AWS Academy Cloud Foundations", issuer: "Amazon Web Services", year: "2024" },
-    { name: "Add your certification", issuer: "Issuer name", year: "Year" }
+    { name: "Google Cybersecurity Professional Certificate", issuer: "Google", year: "May 2024", link: "https://www.coursera.org/account/accomplishments/specialization/W9YQBYWS2P56" },
+    { name: "AWS Academy Graduate - Cloud Architecting", issuer: "Amazon Web Services", year: "Dec 2025", link: "https://www.credly.com/badges/c577d6bc-f83f-4b07-8b88-97556ccea399/linked_in_profile" },
+    { name: "AWS Academy Graduate - Cloud Foundations", issuer: "Amazon Web Services", year: "Oct 2025", link: "https://www.credly.com/badges/7191b14f-416c-4f65-8750-cf72963c884c/linked_in_profile" },
+    { name: "Artificial Intelligence Fundamentals", issuer: "IBM SkillsBuild", year: "Jun 2024", link: "https://www.credly.com/badges/7e8d7a27-fa18-4177-af60-93a7bc74e92d/linked_in_profile" }
   ];
 
   const experience = [
-    { company: "IBM SkillsBuild", role: "Data Science Intern", period: "Jun - Sep 2024", highlights: ["ETL pipeline processing 50K+ records, 90% error reduction", "3 ML models deployed on IBM Cloud, 71% → 82%+ accuracy", "Reduced deployment cycles from 2 days to 3 hours"] },
-    { company: "Ministry of Education, India", role: "Software Developer Intern", period: "Jul - Sep 2024", highlights: ["40% login latency reduction for 5,000+ users", "Firebase optimizations reducing drop-off by 15%"] }
+    { company: "IBM SkillsBuild", role: "AI/ML Intern", period: "Jun - Sep 2024", certificate: "https://drive.google.com/file/d/15YNJwn5_RnmW3Lw4k9ntcoV-oXyNgxVI/view?usp=sharing", highlights: ["ETL pipeline processing 50K+ records, 90% error reduction", "3 ML models deployed on IBM Cloud, 71% → 82%+ accuracy", "Reduced deployment cycles from 2 days to 3 hours"] },
+    { company: "Ministry of Education, India", role: "Android Developer Intern", period: "Jul - Sep 2024", certificate: "https://drive.google.com/file/d/1EA7GRA1FLlJS0jCW_BPBzM1waiF4avbT/view?usp=sharing", highlights: ["40% login latency reduction for 5,000+ users", "Firebase optimizations reducing drop-off by 15%"] }
   ];
 
   return (
@@ -109,7 +102,7 @@ export default function Portfolio() {
           </button>
           <div className="flex items-center gap-6">
             <nav className="hidden md:flex gap-8 text-sm">
-              {['projects', 'experience', 'skills', 'achievements', 'contact'].map(item => (
+              {['projects', 'experience', 'skills', 'publications', 'contact'].map(item => (
                 <button key={item} onClick={() => scrollTo(item)} className="text-white font-semibold hover:text-teal-400 transition-colors capitalize drop-shadow-lg">{item}</button>
               ))}
             </nav>
@@ -174,7 +167,7 @@ export default function Portfolio() {
             <button onClick={() => scrollTo('projects')} className="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full text-white font-medium hover:shadow-lg hover:shadow-teal-500/25 hover:scale-105 transition-all">
               View Projects
             </button>
-            <a href="https://drive.google.com/file/d/1a7aQT78qppYixMCpUgHnoBrx9_J2wYba/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 border border-slate-700 rounded-full text-slate-300 hover:border-pink-400 hover:text-pink-300 transition-all">
+            <a href={resumeLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 border border-slate-700 rounded-full text-slate-300 hover:border-pink-400 hover:text-pink-300 transition-all">
               <Download size={16} /> Resume
             </a>
           </div>
@@ -196,7 +189,7 @@ export default function Portfolio() {
       <section id="about" className={`relative py-24 px-6 transition-all duration-1000 ${visibleSections.about ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="max-w-3xl mx-auto">
           <p className="text-2xl md:text-3xl font-extralight text-slate-300 leading-relaxed mb-8">
-            Hi! I'm a <span className="text-teal-400">Data Scientist</span> & <span className="text-pink-300">ML Engineer</span> pursuing my Master's at <span className="text-white">Northeastern University</span>.
+            Hi! I'm an aspiring <span className="text-teal-400">Data Scientist</span> & <span className="text-pink-300">ML Engineer</span> pursuing my Master's at <span className="text-white">Northeastern University</span>.
           </p>
           <p className="text-slate-400 leading-relaxed mb-6">
             I build intelligent systems that transform raw data into actionable insights and real-world impact. My work spans predictive analytics, deep learning, and full-stack development — from building churn prediction models that help businesses retain customers, to creating voice-based diagnostic tools for healthcare accessibility.
@@ -254,7 +247,14 @@ export default function Portfolio() {
                     <h3 className="text-lg font-medium text-white">{exp.role}</h3>
                     <p className="text-teal-400">{exp.company}</p>
                   </div>
-                  <span className="text-sm text-slate-500">{exp.period}</span>
+                  <div className="flex items-center gap-3">
+                    {exp.certificate && (
+                      <a href={exp.certificate} target="_blank" rel="noopener noreferrer" className="text-xs px-3 py-1 rounded-full bg-pink-500/10 text-pink-400 border border-pink-500/30 hover:bg-pink-500/20 transition-all">
+                        View Certificate
+                      </a>
+                    )}
+                    <span className="text-sm text-slate-500">{exp.period}</span>
+                  </div>
                 </div>
                 <ul className="space-y-2">
                   {exp.highlights.map((h, j) => (
@@ -281,37 +281,8 @@ export default function Portfolio() {
                 <h3 className="text-sm uppercase tracking-wider text-slate-500 mb-4 font-medium">{category}</h3>
                 <div className="flex flex-wrap gap-2">
                   {skills.map((tech) => (
-                    <span key={tech} className="px-4 py-2 rounded-full text-sm bg-slate-900/30 text-slate-300 border border-slate-800/50 hover:border-teal-500/50 hover:text-teal-400 transition-all cursor-default">{tech}</span>
+                    <span key={tech} className={`px-4 py-2 rounded-full text-sm border transition-all cursor-default ${category === "Currently Exploring" ? "bg-teal-500/10 text-teal-400 border-teal-500/30 hover:border-teal-400" : "bg-slate-900/30 text-slate-300 border-slate-800/50 hover:border-teal-500/50 hover:text-teal-400"}`}>{tech}</span>
                   ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ACHIEVEMENTS Section */}
-      <section id="achievements" className={`relative py-24 px-6 transition-all duration-1000 ${visibleSections.achievements ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-extralight mb-12">
-            <span className="text-yellow-400">Achievements</span>
-          </h2>
-          <div className="grid md:grid-cols-2 gap-4">
-            {[
-              { title: "Google Developer Groups Cloud Lead", desc: "Trained 500+ developers in cloud computing technologies", icon: "☁️" },
-              { title: "GameCube Club Program Manager", desc: "Leading gaming community at Northeastern University", icon: "🎮" },
-              { title: "Google DSC Event Management Co-Lead", desc: "Organized 10+ tech events for 200-member community", icon: "🎯" },
-              { title: "86.2% Model Accuracy", desc: "Bank Customer Churn Prediction using H2O AutoML", icon: "📊" },
-              { title: "89.7% Accuracy - Zero False Negatives", desc: "Parkinson's Disease Prediction - critical for clinical safety", icon: "🏥" },
-              { title: "$15K/month Cost Savings Identified", desc: "SaaS Analytics Platform optimization", icon: "💰" }
-            ].map((item, i) => (
-              <div key={i} className="p-5 rounded-2xl bg-slate-900/30 border border-slate-800/50 hover:border-yellow-500/30 transition-all">
-                <div className="flex items-start gap-4">
-                  <span className="text-2xl">{item.icon}</span>
-                  <div>
-                    <h3 className="text-white font-medium mb-1">{item.title}</h3>
-                    <p className="text-slate-400 text-sm">{item.desc}</p>
-                  </div>
                 </div>
               </div>
             ))}
@@ -326,19 +297,19 @@ export default function Portfolio() {
             <span className="text-purple-400">Publications</span>
           </h2>
           <div className="space-y-4">
-            <a href="#" target="_blank" rel="noopener noreferrer" className="group block p-6 rounded-2xl bg-slate-900/30 border border-slate-800/50 hover:border-purple-500/30 transition-all">
-              <span className="text-xs text-purple-400 uppercase tracking-wider mb-2 block">Research Paper</span>
-              <h3 className="text-xl font-medium text-white group-hover:text-purple-400 transition-colors mb-2 flex items-center gap-2">
-                Parkinson's Disease Prediction Using Machine Learning
-                <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-              </h3>
-              <p className="text-slate-400 text-sm mb-3">Published in International Journal of Signal Processing Systems (IJSPS)</p>
-              <div className="flex flex-wrap gap-2">
-                {["Machine Learning", "Random Forest", "Healthcare AI", "Voice Analysis"].map(tag => (
-                  <span key={tag} className="px-3 py-1 text-xs rounded-full bg-slate-800/50 text-slate-400 border border-slate-700/50">{tag}</span>
-                ))}
+            {publications.map((pub, i) => (
+              <div key={i} className="group p-6 rounded-2xl bg-slate-900/30 border border-slate-800/50 hover:border-purple-500/30 transition-all">
+                <span className="text-xs text-purple-400 uppercase tracking-wider mb-2 block">{pub.year}</span>
+                <h3 className="text-xl font-medium text-white group-hover:text-purple-400 transition-colors mb-2">{pub.title}</h3>
+                <p className="text-teal-400 text-sm mb-3">{pub.venue}</p>
+                <p className="text-slate-400 text-sm mb-4">{pub.desc}</p>
+                <div className="flex flex-wrap gap-2">
+                  {pub.tags.map(tag => (
+                    <span key={tag} className="px-3 py-1 text-xs rounded-full bg-slate-800/50 text-slate-400 border border-slate-700/50">{tag}</span>
+                  ))}
+                </div>
               </div>
-            </a>
+            ))}
           </div>
         </div>
       </section>
@@ -349,16 +320,17 @@ export default function Portfolio() {
           <h2 className="text-3xl font-extralight mb-12">
             <span className="text-green-400">Certifications</span>
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              { name: "AWS Academy Cloud Foundations", issuer: "Amazon Web Services", year: "2024" },
-              { name: "Add your certification", issuer: "Issuer name", year: "Year" },
-              { name: "Add your certification", issuer: "Issuer name", year: "Year" }
-            ].map((cert, i) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-4">
+            {certifications.map((cert, i) => (
               <div key={i} className="p-5 rounded-2xl bg-slate-900/30 border border-slate-800/50 hover:border-green-500/30 transition-all">
                 <h3 className="text-white font-medium mb-1">{cert.name}</h3>
                 <p className="text-slate-400 text-sm">{cert.issuer}</p>
-                <p className="text-slate-500 text-xs mt-2">{cert.year}</p>
+                <div className="flex justify-between items-center mt-3">
+                  <p className="text-slate-500 text-xs">{cert.year}</p>
+                  <a href={cert.link} target="_blank" rel="noopener noreferrer" className="text-xs px-3 py-1 rounded-full bg-green-500/10 text-green-400 border border-green-500/30 hover:bg-green-500/20 transition-all">
+                    View Certificate
+                  </a>
+                </div>
               </div>
             ))}
           </div>
@@ -381,7 +353,7 @@ export default function Portfolio() {
             <a href="mailto:vaishnavi10chaughule@gmail.com" className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full text-white font-medium hover:shadow-lg hover:shadow-teal-500/25 hover:scale-105 transition-all">
               <Mail size={18} /> Email Me
             </a>
-            <a href="https://drive.google.com/file/d/1a7aQT78qppYixMCpUgHnoBrx9_J2wYba/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 border border-slate-700 rounded-full text-slate-300 hover:border-pink-400 hover:text-pink-300 transition-all">
+            <a href={resumeLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 border border-slate-700 rounded-full text-slate-300 hover:border-pink-400 hover:text-pink-300 transition-all">
               <Download size={18} /> Resume
             </a>
           </div>
