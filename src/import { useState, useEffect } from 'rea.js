@@ -1,24 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, MapPin, ChevronDown, ExternalLink, Download } from 'lucide-react';
-
-interface VisibleSections {
-  about?: boolean;
-  projects?: boolean;
-  experience?: boolean;
-  skills?: boolean;
-  publications?: boolean;
-  certifications?: boolean;
-  contact?: boolean;
-}
+import { Github, Linkedin, Mail, Phone, MapPin, ChevronDown, ExternalLink, Download } from 'lucide-react';
 
 export default function Portfolio() {
   const [scrollY, setScrollY] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [visibleSections, setVisibleSections] = useState<VisibleSections>({});
+  const [visibleSections, setVisibleSections] = useState({});
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
-    const handleMouse = (e: MouseEvent) => setMousePos({ x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight });
+    const handleMouse = (e) => setMousePos({ x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight });
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('mousemove', handleMouse);
     return () => { window.removeEventListener('scroll', handleScroll); window.removeEventListener('mousemove', handleMouse); };
@@ -32,9 +22,7 @@ export default function Portfolio() {
     return () => observer.disconnect();
   }, []);
 
-  const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-
-  const resumeLink = "https://drive.google.com/file/d/1a7aQT78qppYixMCpUgHnoBrx9_J2wYba/view?usp=sharing";
+  const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
   const projects = [
     { title: "Bank Customer Churn Prediction", desc: "Built an intelligent churn prediction system analyzing 10,000+ customer records with 14 behavioral features. Developed a custom ANN achieving 86.2% accuracy and compared it with H2O AutoML's Stacked Ensemble. Engineered key features like BalanceSalaryRatio and TenureByAge, enabling real-time probability scoring for targeted retention campaigns.", tags: ["Python", "H2O AutoML", "Keras", "TensorFlow", "Pandas"], github: "https://github.com/vaishnavi1064/Bank-Customer-Churn-Prediction-using-H2O-Auto-ML", featured: true },
@@ -46,100 +34,75 @@ export default function Portfolio() {
   ];
 
   const stack = {
-    "Languages": ["Python", "R", "SQL", "Java", "JavaScript", "C++", "Scala"],
-    "Machine Learning & Data Science": ["TensorFlow", "Keras", "PyTorch", "Scikit-learn", "H2O AutoML", "XGBoost", "Pandas", "NumPy", "NLP", "Neural Networks", "SVM", "Random Forest"],
-    "Big Data & Cloud": ["AWS (EC2, S3, Lambda, Redshift)", "Spark", "Hadoop", "Hive", "Kafka", "Docker", "Kubernetes", "ETL Pipelines"],
-    "Visualization & Analytics": ["Power BI", "Tableau", "Plotly", "D3.js", "Seaborn", "Matplotlib", "A/B Testing", "Statistical Analysis"],
-    "Databases & Tools": ["PostgreSQL", "MongoDB", "Elasticsearch", "Git", "Linux/Unix", "Agile", "CI/CD", "MLOps"],
-    "Currently Exploring": ["LLMs & LangChain", "Generative AI", "RAG", "MLflow", "Vertex AI"]
+    "Languages": ["Python", "R", "SQL", "Java", "JavaScript", "HTML"],
+    "Data Engineering & Big Data": ["AWS (EC2, S3, DynamoDB)", "Spark", "Hive", "Kafka", "Docker", "Kubernetes", "Splunk", "Microsoft Azure"],
+    "Machine Learning & Data Science": ["TensorFlow", "Keras", "PyTorch", "Scikit-learn", "H2O AutoML", "Pandas", "NumPy", "OpenAI", "RAG", "NLP", "Neural Networks", "SVM", "Random Forest", "Diffusion Models", "Fine-tuning"],
+    "Visualization & Analytics": ["Power BI", "Tableau", "Plotly", "Seaborn", "Matplotlib", "A/B Testing", "Statistical Analysis", "Time Series"],
+    "Developer Tools": ["Git", "GitHub Copilot", "Linux (CLI)", "IBM Cloud", "Agile", "DSA", "OOP"]
   };
 
-  const publications = [
-    {
-      title: "SaaS Multi-Model Integration: A Comprehensive Student Companion",
-      venue: "International Journal of Signal Processing Systems",
-      year: "2024",
-      desc: "Co-authored a research paper proposing a unified SaaS platform integrating multiple AI/LLM models under a single subscription. Conducted user research through surveys and feedback collection from 1,000+ student users to validate platform design and identify pain points. Introduced the DocuTutor feature for personalized academic document analysis using NLP techniques.",
-      tags: ["AI/LLM", "NLP", "SaaS", "User Research", "DocuTutor"]
-    },
-    {
-      title: "Unified AI Chatbot Platform: A Multi-LLM Integration with Single-Account Access and Enhanced PDF Integration",
-      venue: "Intellectual Property Office, Government of India (Reg. No. L-162771/2025)",
-      year: "2025",
-      desc: "Co-authored a copyrighted literary work outlining a unified AI chatbot platform with multi-LLM integration. Registered with the Intellectual Property Office, Government of India.",
-      tags: ["Copyright", "AI Chatbot", "Multi-LLM", "PDF Integration"]
-    }
-  ];
-
-  const certifications = [
-    { name: "Google Cybersecurity Professional Certificate", issuer: "Google", year: "May 2024", link: "https://www.coursera.org/account/accomplishments/specialization/W9YQBYWS2P56" },
-    { name: "AWS Academy Graduate - Cloud Architecting", issuer: "Amazon Web Services", year: "Dec 2025", link: "https://www.credly.com/badges/c577d6bc-f83f-4b07-8b88-97556ccea399/linked_in_profile" },
-    { name: "AWS Academy Graduate - Cloud Foundations", issuer: "Amazon Web Services", year: "Oct 2025", link: "https://www.credly.com/badges/7191b14f-416c-4f65-8750-cf72963c884c/linked_in_profile" },
-    { name: "Artificial Intelligence Fundamentals", issuer: "IBM SkillsBuild", year: "Jun 2024", link: "https://www.credly.com/badges/7e8d7a27-fa18-4177-af60-93a7bc74e92d/linked_in_profile" }
-  ];
-
   const experience = [
-    { company: "IBM SkillsBuild", role: "AI/ML Intern", period: "Jun - Jul 2024", certificate: "https://drive.google.com/file/d/15YNJwn5_RnmW3Lw4k9ntcoV-oXyNgxVI/view?usp=sharing", highlights: ["ETL pipeline processing 50K+ records, 90% error reduction", "3 ML models deployed on IBM Cloud, 71% → 82%+ accuracy", "Reduced deployment cycles from 2 days to 3 hours"] },
-    { company: "Ministry of Education, India", role: "Android Developer Intern", period: "Jul - Sep 2024", certificate: "https://drive.google.com/file/d/1EA7GRA1FLlJS0jCW_BPBzM1waiF4avbT/view?usp=sharing", highlights: ["40% login latency reduction for 5,000+ users", "Firebase optimizations reducing drop-off by 15%"] }
+    { company: "IBM SkillsBuild", role: "Data Science Intern", period: "Jun - Sep 2024", highlights: ["ETL pipeline processing 50K+ records, 90% error reduction", "3 ML models deployed on IBM Cloud, 71% → 82%+ accuracy", "Reduced deployment cycles from 2 days to 3 hours"] },
+    { company: "Ministry of Education, India", role: "Software Developer Intern", period: "Jul - Sep 2024", highlights: ["40% login latency reduction for 5,000+ users", "Firebase optimizations reducing drop-off by 15%"] }
   ];
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 overflow-x-hidden font-light">
       {/* Minimal Animated Background */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        {/* Base gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
+        
+        {/* Soft glowing orbs that follow mouse */}
         <div className="absolute w-[600px] h-[600px] rounded-full opacity-20 blur-3xl bg-teal-500/30 transition-all duration-1000 ease-out"
           style={{ left: `${mousePos.x * 60}%`, top: `${mousePos.y * 60}%`, transform: 'translate(-50%, -50%)' }} />
         <div className="absolute w-[400px] h-[400px] rounded-full opacity-15 blur-3xl bg-pink-500/30 transition-all duration-1000 ease-out"
           style={{ left: `${100 - mousePos.x * 40}%`, top: `${100 - mousePos.y * 40}%`, transform: 'translate(-50%, -50%)' }} />
       </div>
 
-      {/* Simple Header - ON TOP OF BANNER */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrollY > 50 ? 'bg-slate-950/80 backdrop-blur-xl border-b border-slate-800/50' : 'bg-transparent'}`}>
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      {/* Simple Header */}
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrollY > 50 ? 'bg-slate-950/80 backdrop-blur-xl border-b border-slate-800/50' : ''}`}>
+        <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
           <button onClick={() => scrollTo('home')} className="text-xl font-medium tracking-tight">
             <span className="text-teal-400">vaishnavi</span><span className="text-pink-300">.</span>
           </button>
           <div className="flex items-center gap-6">
-            <nav className="hidden md:flex gap-8 text-sm">
-              {['projects', 'experience', 'skills', 'publications', 'certifications', 'contact'].map(item => (
-                <button key={item} onClick={() => scrollTo(item)} className="text-white font-semibold hover:text-teal-400 transition-colors capitalize drop-shadow-lg">{item}</button>
+            <nav className="hidden md:flex gap-8 text-sm text-slate-400">
+              {['projects', 'experience', 'contact'].map(item => (
+                <button key={item} onClick={() => scrollTo(item)} className="hover:text-teal-400 transition-colors capitalize">{item}</button>
               ))}
             </nav>
             <div className="flex gap-3">
-              <a href="https://github.com/vaishnavi1064" target="_blank" rel="noopener noreferrer" className="text-white hover:text-teal-400 transition-colors drop-shadow-lg"><Github size={18} strokeWidth={2.5} /></a>
-              <a href="https://linkedin.com/in/vaishnavichaughule" target="_blank" rel="noopener noreferrer" className="text-white hover:text-pink-400 transition-colors drop-shadow-lg"><Linkedin size={18} strokeWidth={2.5} /></a>
+              <a href="https://github.com/vaishnavi1064" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-teal-400 transition-colors"><Github size={18} /></a>
+              <a href="https://linkedin.com/in/vaishnavichaughule" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-pink-400 transition-colors"><Linkedin size={18} /></a>
             </div>
           </div>
         </div>
       </header>
 
-      {/* BANNER - Same width as content sections */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 w-full max-w-5xl px-6">
-        <div className="w-full h-[50vh] rounded-2xl overflow-hidden">
-          <img 
-            src="https://i.imgur.com/V0qrlar.jpeg" 
-            alt="Seattle Skyline"
-            className="w-full h-full object-cover"
-          />
-        </div>
-      </div>
-
       {/* HOME Section */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center px-6 pt-[30vh]">
+      <section id="home" className="relative min-h-screen flex items-center justify-center px-6">
         <div className="relative z-10 max-w-3xl text-center" style={{ transform: `translateY(${scrollY * 0.3}px)`, opacity: Math.max(0, 1 - scrollY * 0.002) }}>
           
-          {/* Profile circle with YOUR PHOTO - moved closer to name */}
-          <div className="mb-4 inline-block relative">
+          {/* Profile Image with Background */}
+          <div className="mb-8 inline-block relative">
+            {/* Seattle skyline background behind profile - half circle below */}
+            <div 
+              className="absolute top-[50%] left-1/2 -translate-x-1/2 w-[280px] h-[140px] rounded-b-full"
+              style={{
+                background: `linear-gradient(to bottom, transparent 0%, rgba(15,23,42,0.3) 100%), url('https://i.imgur.com/V0qrlar.jpeg')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center 30%',
+                opacity: 0.7,
+                filter: 'blur(0.5px)'
+              }}
+            />
+            
             <div className="relative group">
               <div className="absolute -inset-2 bg-gradient-to-r from-teal-400 via-cyan-400 to-pink-400 rounded-full blur-lg opacity-60 group-hover:opacity-80 transition-opacity" />
-              <div className="relative w-40 h-40 rounded-full bg-gradient-to-br from-teal-400 to-pink-400 p-[2px]">
-                <div className="w-full h-full rounded-full overflow-hidden">
-                  <img 
-                    src="https://i.imgur.com/mG5P7Q4.jpeg" 
-                    alt="Vaishnavi Chaughule"
-                    className="w-full h-full object-cover"
-                  />
+              <div className="relative w-44 h-44 rounded-full bg-gradient-to-br from-teal-400 to-pink-400 p-[2px]">
+                <div className="w-full h-full rounded-full bg-slate-900 overflow-hidden flex items-center justify-center">
+                  <span className="text-4xl font-light bg-gradient-to-r from-teal-400 to-pink-400 bg-clip-text text-transparent">VC</span>
                 </div>
               </div>
             </div>
@@ -152,7 +115,7 @@ export default function Portfolio() {
           </h1>
 
           {/* Email */}
-          <p className="text-white font-medium mb-6 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+          <p className="text-slate-500 mb-6 animate-fade-in" style={{ animationDelay: '0.3s' }}>
             vaishnavi10chaughule@gmail.com
           </p>
 
@@ -167,7 +130,7 @@ export default function Portfolio() {
             <button onClick={() => scrollTo('projects')} className="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full text-white font-medium hover:shadow-lg hover:shadow-teal-500/25 hover:scale-105 transition-all">
               View Projects
             </button>
-            <a href={resumeLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 border border-slate-700 rounded-full text-slate-300 hover:border-pink-400 hover:text-pink-300 transition-all">
+            <a href="#" className="flex items-center gap-2 px-6 py-3 border border-slate-700 rounded-full text-slate-300 hover:border-pink-400 hover:text-pink-300 transition-all">
               <Download size={16} /> Resume
             </a>
           </div>
@@ -189,7 +152,7 @@ export default function Portfolio() {
       <section id="about" className={`relative py-24 px-6 transition-all duration-1000 ${visibleSections.about ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="max-w-3xl mx-auto">
           <p className="text-2xl md:text-3xl font-extralight text-slate-300 leading-relaxed mb-8">
-            Hi! I'm an aspiring <span className="text-teal-400">Data Scientist</span> & <span className="text-pink-300">ML Engineer</span> pursuing my Master's at <span className="text-white">Northeastern University</span>.
+            Hi! I'm a <span className="text-teal-400">Data Scientist</span> & <span className="text-pink-300">ML Engineer</span> pursuing my Master's at <span className="text-white">Northeastern University</span>.
           </p>
           <p className="text-slate-400 leading-relaxed mb-6">
             I build intelligent systems that transform raw data into actionable insights and real-world impact. My work spans predictive analytics, deep learning, and full-stack development — from building churn prediction models that help businesses retain customers, to creating voice-based diagnostic tools for healthcare accessibility.
@@ -247,14 +210,7 @@ export default function Portfolio() {
                     <h3 className="text-lg font-medium text-white">{exp.role}</h3>
                     <p className="text-teal-400">{exp.company}</p>
                   </div>
-                  <div className="flex items-center gap-3">
-                    {exp.certificate && (
-                      <a href={exp.certificate} target="_blank" rel="noopener noreferrer" className="text-xs px-3 py-1 rounded-full bg-pink-500/10 text-pink-400 border border-pink-500/30 hover:bg-pink-500/20 transition-all">
-                        View Certificate
-                      </a>
-                    )}
-                    <span className="text-sm text-slate-500">{exp.period}</span>
-                  </div>
+                  <span className="text-sm text-slate-500">{exp.period}</span>
                 </div>
                 <ul className="space-y-2">
                   {exp.highlights.map((h, j) => (
@@ -269,11 +225,11 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* SKILLS Section */}
-      <section id="skills" className={`relative py-24 px-6 transition-all duration-1000 ${visibleSections.skills ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      {/* TECHNICAL STACK Section */}
+      <section id="stack" className={`relative py-24 px-6 transition-all duration-1000 ${visibleSections.stack ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-extralight mb-12">
-            <span className="text-cyan-400">Skills</span>
+            <span className="text-cyan-400">Technical Stack</span>
           </h2>
           <div className="space-y-8">
             {Object.entries(stack).map(([category, skills]) => (
@@ -281,55 +237,8 @@ export default function Portfolio() {
                 <h3 className="text-sm uppercase tracking-wider text-slate-500 mb-4 font-medium">{category}</h3>
                 <div className="flex flex-wrap gap-2">
                   {skills.map((tech) => (
-                    <span key={tech} className={`px-4 py-2 rounded-full text-sm border transition-all cursor-default ${category === "Currently Exploring" ? "bg-teal-500/10 text-teal-400 border-teal-500/30 hover:border-teal-400" : "bg-slate-900/30 text-slate-300 border-slate-800/50 hover:border-teal-500/50 hover:text-teal-400"}`}>{tech}</span>
+                    <span key={tech} className="px-4 py-2 rounded-full text-sm bg-slate-900/30 text-slate-300 border border-slate-800/50 hover:border-teal-500/50 hover:text-teal-400 transition-all cursor-default">{tech}</span>
                   ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* PUBLICATIONS Section */}
-      <section id="publications" className={`relative py-24 px-6 transition-all duration-1000 ${visibleSections.publications ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-extralight mb-12">
-            <span className="text-purple-400">Publications</span>
-          </h2>
-          <div className="space-y-4">
-            {publications.map((pub, i) => (
-              <div key={i} className="group p-6 rounded-2xl bg-slate-900/30 border border-slate-800/50 hover:border-purple-500/30 transition-all">
-                <span className="text-xs text-purple-400 uppercase tracking-wider mb-2 block">{pub.year}</span>
-                <h3 className="text-xl font-medium text-white group-hover:text-purple-400 transition-colors mb-2">{pub.title}</h3>
-                <p className="text-teal-400 text-sm mb-3">{pub.venue}</p>
-                <p className="text-slate-400 text-sm mb-4">{pub.desc}</p>
-                <div className="flex flex-wrap gap-2">
-                  {pub.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1 text-xs rounded-full bg-slate-800/50 text-slate-400 border border-slate-700/50">{tag}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CERTIFICATIONS Section */}
-      <section id="certifications" className={`relative py-24 px-6 transition-all duration-1000 ${visibleSections.certifications ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-extralight mb-12">
-            <span className="text-green-400">Certifications</span>
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-4">
-            {certifications.map((cert, i) => (
-              <div key={i} className="p-5 rounded-2xl bg-slate-900/30 border border-slate-800/50 hover:border-green-500/30 transition-all">
-                <h3 className="text-white font-medium mb-1">{cert.name}</h3>
-                <p className="text-slate-400 text-sm">{cert.issuer}</p>
-                <div className="flex justify-between items-center mt-3">
-                  <p className="text-slate-500 text-xs">{cert.year}</p>
-                  <a href={cert.link} target="_blank" rel="noopener noreferrer" className="text-xs px-3 py-1 rounded-full bg-green-500/10 text-green-400 border border-green-500/30 hover:bg-green-500/20 transition-all">
-                    View Certificate
-                  </a>
                 </div>
               </div>
             ))}
@@ -353,7 +262,7 @@ export default function Portfolio() {
             <a href="mailto:vaishnavi10chaughule@gmail.com" className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full text-white font-medium hover:shadow-lg hover:shadow-teal-500/25 hover:scale-105 transition-all">
               <Mail size={18} /> Email Me
             </a>
-            <a href={resumeLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 border border-slate-700 rounded-full text-slate-300 hover:border-pink-400 hover:text-pink-300 transition-all">
+            <a href="#" className="flex items-center gap-2 px-6 py-3 border border-slate-700 rounded-full text-slate-300 hover:border-pink-400 hover:text-pink-300 transition-all">
               <Download size={18} /> Resume
             </a>
           </div>
